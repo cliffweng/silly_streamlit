@@ -1,2 +1,4 @@
 streamlit==0.80.0
 yfinance==0.1.59
+newspaper3k
+pytrends
