@@ -1,4 +1,6 @@
 streamlit==0.80.0
 yfinance==0.1.59
+yahoo-fin==0.8.6
+matplotlib==3.3.4
 newspaper3k
 pytrends
