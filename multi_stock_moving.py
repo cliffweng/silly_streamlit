@@ -1,7 +1,10 @@
 import yfinance as yf
 import streamlit as st
 import datetime
+import time
 import pandas as pd
+
+st.set_page_config(layout="wide")
 
 st.write("""
 # Simple Multiple Stock Price App
@@ -21,14 +24,19 @@ haveResult = False
 for s in stocks:
     tickerDf = yf.Ticker(s).history(period='1d', start=startdate, end=enddate)
     if firstable==True:
-        outputdf = tickerDf[['Close']].rename(columns={'Close': s})
-        voldf = tickerDf[['Volume']].rename(columns={'Volume': s})
+        outp = tickerDf[['Close']].rename(columns={'Close': s})
+        outv = tickerDf[['Volume']].rename(columns={'Volume': s})
         firstable=False
     else:
-        outputdf[s] = tickerDf['Close']
-        voldf[s] = tickerDf['Volume']
+        outp[s] = tickerDf['Close']
+        outv[s] = tickerDf['Volume']
     haveResult = True
 
 if haveResult:
-    st.line_chart(outputdf)
-    st.line_chart(voldf)
+    dfp = pd.DataFrame(columns=outp.columns,index=outp.index)
+    stock_chart = st.line_chart(dfp)
+    for index, row in outp.iterrows():
+        # df.loc[len(df.index)] = row
+        dfp.loc[index] = row
+        time.sleep(0.1)
+        stock_chart.line_chart(dfp)

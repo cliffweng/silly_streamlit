@@ -7,7 +7,7 @@ import numpy as np
 import yfinance as yf
 import datetime
 
-st.beta_set_page_config(layout="wide")
+st.set_page_config(layout="wide")
 st.title('S&P 500 App')
 
 st.markdown("""
