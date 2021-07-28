@@ -1,1 +1,1 @@
-web: sh setup.sh && streamlit run stock2.py
+web: sh setup.sh && streamlit run s_p_500_stock_drilldown.py
